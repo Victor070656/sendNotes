@@ -24,13 +24,13 @@ new class extends Component {
         <h2 class="text-2xl font-semibold">{{ 'Show Notes' }}</h2>
         <x-button primary icon="plus" href="{{ route('notes.create') }}" wire:navigate>Create Note</x-button>
     </div>
-    <div class="space-y-3 mt-6">
+    <div class="space-y-3 mt-6"> 
         <div class="grid md:grid-cols-3 gap-4">
             @forelse ($notes as $note)
                 <x-card wire:key='{{ $note->id }}'>
                     <div class="flex justify-between items-center">
-                        <a href="#"
-                            class="text-xl hover:underline hover:text-blue-700 font-semibold">{{ $note->title }}</a>
+                        <a href="{{ route('notes.edit', $note) }}" 
+                            class="text-xl hover:underline hover:text-blue-700 font-semibold" >{{ $note->title }}</a>
                         <span class="text-xs">{{ Carbon\Carbon::parse($note->send_date)->format('M d, Y') }}</span>
                     </div>
                     <div class="">
@@ -39,7 +39,7 @@ new class extends Component {
                     <div class="flex justify-between items-end">
                         <p class="text-xs">Recipient: <span class="font-semibold">{{ $note->recipient }}</span></p>
                         <div class="">
-                            <x-button secondary xs icon="eye" class="rounded-full"></x-button>
+                            <x-button secondary xs icon="eye" class="rounded-full" href="{{ route('notes.edit', $note) }}" wire:navigate></x-button>
                             <x-button secondary xs icon="trash" class="rounded-full"
                                 wire:click="delete('{{ $note->id }}')"></x-button>
                         </div>
