@@ -10,11 +10,11 @@
             <p class="mt-2 text-sm">
                 {{ $note->body }}
             </p>
-            <div class="flex items-center justify-end space-x-2">
+            <div class="flex items-end justify-end space-x-2 mt-5">
                 <p class="text-xs">
                     Sent from: {{ $user->name }}
                 </p>
-                <livewire:notes.heartreact />
+                <livewire:notes.heartreact :note="$note" />
             </div>
         </div>
     </div>
